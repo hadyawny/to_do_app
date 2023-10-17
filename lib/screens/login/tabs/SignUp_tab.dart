@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/screens/login/login.dart';
+import 'package:to_do_app/shared/network/firebase/firebase_manager.dart';
 import 'package:to_do_app/shared/styles/colors.dart';
 
 class SignUpTab extends StatelessWidget {
@@ -72,7 +74,27 @@ class SignUpTab extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                if (_formKey.currentState!.validate()) {}
+                if (_formKey.currentState!.validate()) {
+                  FirebaseManager.createAccount(emailController.text, passwordController.text,(){
+                    Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName, (route) => false);
+                  },(error){
+                    showDialog(context: context,
+                      barrierDismissible: false,
+                      builder: (context) => AlertDialog(
+                      title: Text("Error"),
+                      content: Text(error.toString()),
+                      actions: [
+                        ElevatedButton(onPressed: (){
+                          Navigator.pop(context);
+                        },style: ElevatedButton.styleFrom(
+                          backgroundColor: primary
+                        ),
+                            child: Text("Okay"))
+                      ],
+
+                    ),);
+                  });
+                }
               },
               child: const Text(
                 'Sign Up',
