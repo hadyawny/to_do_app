@@ -8,6 +8,8 @@ import 'package:to_do_app/shared/styles/colors.dart';
 import '../../models/task_model.dart';
 
 class TasksTab extends StatefulWidget {
+  const TasksTab({super.key});
+
   @override
   State<TasksTab> createState() => _TasksTabState();
 }
@@ -21,8 +23,8 @@ class _TasksTabState extends State<TasksTab> {
       children: [
         CalendarTimeline(
           initialDate: selectedDate,
-          firstDate: DateTime.now().subtract(Duration(days: 365)),
-          lastDate: DateTime.now().add(Duration(days: 365)),
+          firstDate: DateTime.now().subtract(const Duration(days: 365)),
+          lastDate: DateTime.now().add(const Duration(days: 365)),
           onDateSelected: (date) {
             selectedDate = date;
             setState(() {});
@@ -36,7 +38,7 @@ class _TasksTabState extends State<TasksTab> {
           selectableDayPredicate: (date) => true,
           locale: 'en_ISO',
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Expanded(
@@ -44,10 +46,10 @@ class _TasksTabState extends State<TasksTab> {
           stream: FirebaseManager.getTasks(selectedDate),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: const CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
             if (snapshot.hasError) {
-              return Center(child: Text("Something went wrong"));
+              return const Center(child: Text("Something went wrong"));
             }
 
             var tasks =

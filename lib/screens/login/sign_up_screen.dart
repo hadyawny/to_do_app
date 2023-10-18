@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:to_do_app/screens/login/login_screen.dart';
-import 'package:to_do_app/shared/styles/theming.dart';
-
-import '../../layout/home_layout.dart';
-import '../../providers/my_provider.dart';
 import '../../shared/network/firebase/firebase_manager.dart';
 import '../../shared/styles/colors.dart';
 
@@ -22,7 +17,6 @@ class SignUpScreen extends StatelessWidget {
     var passwordController = TextEditingController();
     var nameController = TextEditingController();
     var ageController = TextEditingController();
-    var provider = Provider.of<MyProvider>(context);
 
 
     return Scaffold(
@@ -32,11 +26,11 @@ class SignUpScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height: 73,),
+            const SizedBox(height: 73,),
             Text("Create an account ",style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                 fontSize: 24
             )),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Form(
@@ -46,7 +40,7 @@ class SignUpScreen extends StatelessWidget {
                   children: [
                     TextFormField(
                       controller: nameController,
-                      decoration: InputDecoration(labelText: 'Name',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primary),),labelStyle: TextStyle(color: Colors.grey) ),
+                      decoration: InputDecoration(labelText: 'Name',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primary),),labelStyle: const TextStyle(color: Colors.grey) ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please Enter Your Name';
@@ -58,7 +52,7 @@ class SignUpScreen extends StatelessWidget {
                     TextFormField(
                       controller: ageController,
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(labelText: 'Age',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primary),),labelStyle: TextStyle(color: Colors.grey) ),
+                      decoration: InputDecoration(labelText: 'Age',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primary),),labelStyle: const TextStyle(color: Colors.grey) ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please Enter Your Age';
@@ -69,7 +63,7 @@ class SignUpScreen extends StatelessWidget {
                     TextFormField(
                       controller: emailController,
                       keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(labelText: 'Email',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primary),),labelStyle: TextStyle(color: Colors.grey) ),
+                      decoration: InputDecoration(labelText: 'Email',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primary),),labelStyle: const TextStyle(color: Colors.grey) ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please Enter Your Email';
@@ -88,7 +82,7 @@ class SignUpScreen extends StatelessWidget {
                     TextFormField(
                       controller: passwordController,
                       obscureText: true,
-                      decoration: InputDecoration(labelText: 'Password',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primary),),labelStyle: TextStyle(color: Colors.grey) ),
+                      decoration: InputDecoration(labelText: 'Password',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primary),),labelStyle: const TextStyle(color: Colors.grey) ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please Enter Your Password';
@@ -112,7 +106,7 @@ class SignUpScreen extends StatelessWidget {
                               context: context,
                               barrierDismissible: false,
                               builder: (context) => AlertDialog(
-                                title: Text("Error"),
+                                title: const Text("Error"),
                                 content: Text(error.toString()),
                                 actions: [
                                   ElevatedButton(
@@ -121,24 +115,24 @@ class SignUpScreen extends StatelessWidget {
                                       },
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: primary),
-                                      child: Text("Okay"))
+                                      child: const Text("Okay"))
                                 ],
                               ),
                             );
                           });
                         }
                       },
+                      style: ElevatedButton.styleFrom(backgroundColor: primary),
                       child: const Text(
                         'Sign Up',
                         style: TextStyle(fontSize: 18),
                       ),
-                      style: ElevatedButton.styleFrom(backgroundColor: primary),
                     ),
                   ],
                 ),
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -149,7 +143,7 @@ class SignUpScreen extends StatelessWidget {
                     color: Colors.black,
                     fontWeight: FontWeight.w400
                 ),),
-                SizedBox(width: 10,),
+                const SizedBox(width: 10,),
                 InkWell(
                   onTap: (){
                     Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName, (route) => false);

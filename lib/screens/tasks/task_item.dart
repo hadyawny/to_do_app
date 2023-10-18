@@ -15,11 +15,11 @@ class TaskItem extends StatelessWidget {
       elevation: 12,
       shape: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.transparent)),
-      margin: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          borderSide: const BorderSide(color: Colors.transparent)),
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Slidable(
 
-        startActionPane: ActionPane(motion: BehindMotion(), children: [
+        startActionPane: ActionPane(motion: const BehindMotion(), children: [
           SlidableAction(
             onPressed: (context) {
               FirebaseManager.deleteTask(task.id);
@@ -27,7 +27,7 @@ class TaskItem extends StatelessWidget {
             backgroundColor: Colors.red,
             label: "Delete",
             icon: Icons.delete,
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(12),bottomLeft: Radius.circular(12)),
+            borderRadius: const BorderRadius.only(topLeft: Radius.circular(12),bottomLeft: Radius.circular(12)),
           ),
           SlidableAction(
             onPressed: (context) {},
@@ -49,7 +49,7 @@ class TaskItem extends StatelessWidget {
                     borderRadius: BorderRadius.circular(24),
                     border: Border.all(color: primary)),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Column(
@@ -65,7 +65,7 @@ class TaskItem extends StatelessWidget {
                   ),
                   Text(
                     task.description,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color: Colors.black54,
@@ -73,7 +73,7 @@ class TaskItem extends StatelessWidget {
                   ),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               InkWell(
                 onTap: (){
                   if (task.isDone == true){
@@ -86,13 +86,13 @@ class TaskItem extends StatelessWidget {
                   
                 },
                 child: Container(
-                  margin: EdgeInsets.only(right: 12),
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+                  margin: const EdgeInsets.only(right: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
                   decoration: BoxDecoration(
                     color: task.isDone ? Colors.green : primary,
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: task.isDone ? Text("Done",style: TextStyle(fontSize: 24,color: Colors.white),) :Icon(
+                  child: task.isDone ? const Text("Done",style: TextStyle(fontSize: 24,color: Colors.white),) :const Icon(
                     Icons.done,
                     color: Colors.white,
                     size: 30,

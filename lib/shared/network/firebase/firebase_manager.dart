@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_app/models/task_model.dart';
 import 'package:to_do_app/models/user_model.dart';
@@ -32,20 +31,18 @@ class FirebaseManager {
     );
   }
 
-  static Future<void> addUserToFirestore(UserModel user){
-
+  static Future<void> addUserToFirestore(UserModel user) {
     var collection = getUsersCollection();
     var docRef = collection.doc(user.id);
     return docRef.set(user);
-
   }
 
-   static Future<UserModel?> readUser(String id)async{
-     DocumentSnapshot<UserModel> userDoc=await getUsersCollection().doc(id).get();
+  static Future<UserModel?> readUser(String id) async {
+    DocumentSnapshot<UserModel> userDoc =
+        await getUsersCollection().doc(id).get();
 
-     return userDoc.data();
+    return userDoc.data();
   }
-
 
   static Future<void> addTask(TaskModel task) {
     var collection = getTasksCollection();
@@ -54,12 +51,10 @@ class FirebaseManager {
     return docRef.set(task);
   }
 
-
-
-
   static Stream<QuerySnapshot<TaskModel>> getTasks(DateTime date) {
     return getTasksCollection()
-        .where("userId" ,isEqualTo: FirebaseAuth.instance.currentUser!.uid).where("date",
+        .where("userId", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .where("date",
             isEqualTo: DateUtils.dateOnly(date).millisecondsSinceEpoch)
         .snapshots();
   }
@@ -72,8 +67,8 @@ class FirebaseManager {
     getTasksCollection().doc(model.id).update(model.toJson());
   }
 
-  static Future<void> createAccount(String name,int age,String email, String password,
-      Function onSuccess, Function onError) async {
+  static Future<void> createAccount(String name, int age, String email,
+      String password, Function onSuccess, Function onError) async {
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -81,13 +76,13 @@ class FirebaseManager {
         password: password,
       );
 
-      UserModel userModel = UserModel(id: credential.user!.uid, name: name, age: age, email: email);
+      UserModel userModel = UserModel(
+          id: credential.user!.uid, name: name, age: age, email: email);
 
       credential.user!.sendEmailVerification();
       addUserToFirestore(userModel);
 
       onSuccess();
-
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         onError(e.message);
@@ -105,21 +100,15 @@ class FirebaseManager {
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
 
-      if(credential.user!.emailVerified){
+      if (credential.user!.emailVerified) {
         onSuccess();
-      }else{
+      } else {
         onError("Please Verify Your Email");
       }
-
     } on FirebaseAuthException catch (e) {
-
       if (e.code == 'INVALID_LOGIN_CREDENTIALS') {
-          onError("Wrong Email or Password");
-         }
+        onError("Wrong Email or Password");
+      }
     }
   }
-
-
-
-
 }

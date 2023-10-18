@@ -1,15 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:to_do_app/screens/settings/settings_tab.dart';
 import 'package:to_do_app/screens/tasks/tasks_tab.dart';
 import 'package:to_do_app/shared/styles/colors.dart';
-import '../providers/my_provider.dart';
 import '../screens/login/login_screen.dart';
 import '../screens/tasks/add_task_bottom_sheet.dart';
 
 class HomeLayout extends StatefulWidget {
   static const String routeName = "homeLayout";
+
+  const HomeLayout({super.key});
 
   @override
   State<HomeLayout> createState() => _HomeLayoutState();
@@ -21,7 +21,6 @@ class _HomeLayoutState extends State<HomeLayout> {
 
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<MyProvider>(context);
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
@@ -29,10 +28,10 @@ class _HomeLayoutState extends State<HomeLayout> {
           IconButton(onPressed: (){
             FirebaseAuth.instance.signOut();
             Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName, (route) => false);
-          }, icon: Icon(Icons.logout))
+          }, icon: const Icon(Icons.logout))
         ],
         backgroundColor: primary,
-        title: Text("To Do "),
+        title: const Text("To Do "),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
@@ -40,12 +39,12 @@ class _HomeLayoutState extends State<HomeLayout> {
         onPressed: () {
           showAddTaskBottomSheet();
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       bottomNavigationBar: BottomAppBar(
         notchMargin: 7,
         color: Colors.white,
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         child: BottomNavigationBar(
             elevation: 0,
             currentIndex: index,
@@ -54,7 +53,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                 index = value;
               });
             },
-            items: [
+            items: const [
               BottomNavigationBarItem(icon: Icon(Icons.list), label: ""),
               BottomNavigationBarItem(icon: Icon(Icons.settings), label: ""),
             ]),

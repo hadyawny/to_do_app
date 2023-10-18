@@ -10,26 +10,28 @@ import 'package:to_do_app/shared/styles/theming.dart';
 
 import 'firebase_options.dart';
 
-void main() async{
-
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   // FirebaseFirestore.instance.disableNetwork();
   runApp(ChangeNotifierProvider(
-      create: (context) => MyProvider(),
-      child: MyApp()));
+      create: (context) => MyProvider(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<MyProvider>(context);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: provider.firebaseUser != null ? HomeLayout.routeName : LoginScreen.routeName,
+      initialRoute: provider.firebaseUser != null
+          ? HomeLayout.routeName
+          : LoginScreen.routeName,
       routes: {
         HomeLayout.routeName: (context) => HomeLayout(),
         LoginScreen.routeName: (context) => LoginScreen(),

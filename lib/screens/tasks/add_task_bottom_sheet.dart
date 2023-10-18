@@ -6,6 +6,8 @@ import 'package:to_do_app/shared/network/firebase/firebase_manager.dart';
 import 'package:to_do_app/shared/styles/colors.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
+  const AddTaskBottomSheet({super.key});
+
   @override
   State<AddTaskBottomSheet> createState() => _AddTaskBottomSheetState();
 }
@@ -29,13 +31,13 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
             style: GoogleFonts.poppins(
                 fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
           ),
-          SizedBox(
+          const SizedBox(
             height: 24,
           ),
           TextFormField(
             controller: titleController,
             decoration: InputDecoration(
-              label: Text("Task Title"),
+              label: const Text("Task Title",style: TextStyle(color: Colors.black45),),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
@@ -50,13 +52,13 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 18,
           ),
           TextFormField(
             controller: descriptionController,
             decoration: InputDecoration(
-              label: Text("Task Description"),
+              label: const Text("Task Description",style: TextStyle(color: Colors.black45),),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
@@ -71,7 +73,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 18,
           ),
           Text(
@@ -79,7 +81,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
             style: GoogleFonts.poppins(
                 fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
           ),
-          SizedBox(
+          const SizedBox(
             height: 9,
           ),
           InkWell(
@@ -93,7 +95,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                   fontSize: 16, fontWeight: FontWeight.w500, color: primary),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 18,
           ),
           ElevatedButton(
@@ -110,11 +112,11 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                 Navigator.pop(context);
               });
             },
-            child: Text(
+            child: const Text(
               "Add Task",
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 18,
           ),
         ],
@@ -143,7 +145,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
       initialDate: selectedDate,
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(
-        Duration(days: 365),
+        const Duration(days: 365),
       ),
     );
     if (chosenDate == null) {
