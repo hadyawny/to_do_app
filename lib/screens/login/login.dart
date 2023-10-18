@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:to_do_app/screens/login/tabs/Login_tab.dart';
 import 'package:to_do_app/screens/login/tabs/SignUp_tab.dart';
 import 'package:to_do_app/shared/styles/colors.dart';
 
-class LoginScreen extends StatelessWidget {
+import '../../providers/my_provider.dart';
+
+class LoginScreen1 extends StatelessWidget {
   static const String routeName = "LoginScreen";
 
-  const LoginScreen({super.key});
+  const LoginScreen1({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(

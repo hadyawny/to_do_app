@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do_app/screens/login/login.dart';
 import 'package:to_do_app/screens/settings/settings_tab.dart';
 import 'package:to_do_app/screens/tasks/tasks_tab.dart';
 import 'package:to_do_app/shared/styles/colors.dart';
 
+import '../providers/my_provider.dart';
 import '../screens/tasks/add_task_bottom_sheet.dart';
 
 class HomeLayout extends StatefulWidget {
@@ -18,12 +22,18 @@ class _HomeLayoutState extends State<HomeLayout> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
     return Scaffold(
       extendBody: true,
-      backgroundColor: mintGreen,
       appBar: AppBar(
+        actions: [
+          IconButton(onPressed: (){
+            FirebaseAuth.instance.signOut();
+            Navigator.pushNamedAndRemoveUntil(context, LoginScreen1.routeName, (route) => false);
+          }, icon: Icon(Icons.logout))
+        ],
         backgroundColor: primary,
-        title: Text("To Do"),
+        title: Text("To Do "),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(

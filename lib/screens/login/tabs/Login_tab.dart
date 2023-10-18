@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:to_do_app/layout/home_layout.dart';
 import 'package:to_do_app/shared/network/firebase/firebase_manager.dart';
 import 'package:to_do_app/shared/styles/colors.dart';
+
+import '../../../providers/my_provider.dart';
 
 class LoginTab extends StatelessWidget {
   var _formKey = GlobalKey<FormState>();
@@ -10,6 +13,8 @@ class LoginTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Form(
@@ -50,8 +55,10 @@ class LoginTab extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
+
                   FirebaseManager.login(
                       emailController.text, passwordController.text, () {
+                        provider.initUser();
                     Navigator.pushNamedAndRemoveUntil(
                         context, HomeLayout.routeName, (route) => false);
                   }, (error) {

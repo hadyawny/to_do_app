@@ -4,7 +4,7 @@ import 'package:to_do_app/shared/network/firebase/firebase_manager.dart';
 import 'package:to_do_app/shared/styles/colors.dart';
 
 class SignUpTab extends StatelessWidget {
-  var _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var nameController = TextEditingController();
@@ -75,24 +75,31 @@ class SignUpTab extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  FirebaseManager.createAccount(emailController.text, passwordController.text,(){
-                    Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName, (route) => false);
-                  },(error){
-                    showDialog(context: context,
+                  FirebaseManager.createAccount(
+                      nameController.text,
+                      int.parse(ageController.text),
+                      emailController.text,
+                      passwordController.text, () {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, LoginScreen1.routeName, (route) => false);
+                  }, (error) {
+                    showDialog(
+                      context: context,
                       barrierDismissible: false,
                       builder: (context) => AlertDialog(
-                      title: Text("Error"),
-                      content: Text(error.toString()),
-                      actions: [
-                        ElevatedButton(onPressed: (){
-                          Navigator.pop(context);
-                        },style: ElevatedButton.styleFrom(
-                          backgroundColor: primary
-                        ),
-                            child: Text("Okay"))
-                      ],
-
-                    ),);
+                        title: Text("Error"),
+                        content: Text(error.toString()),
+                        actions: [
+                          ElevatedButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: primary),
+                              child: Text("Okay"))
+                        ],
+                      ),
+                    );
                   });
                 }
               },
