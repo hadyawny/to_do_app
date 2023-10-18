@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/layout/home_layout.dart';
 import 'package:to_do_app/providers/my_provider.dart';
-import 'package:to_do_app/screens/login/login.dart';
 import 'package:to_do_app/screens/login/login_screen.dart';
 import 'package:to_do_app/screens/login/sign_up_screen.dart';
 import 'package:to_do_app/shared/styles/theming.dart';
