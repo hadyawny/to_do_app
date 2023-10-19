@@ -40,7 +40,7 @@ class _EditScreenState extends State<EditScreen> {
               },
               icon: const Icon(Icons.logout))
         ],
-        title: const Text("To Do "),
+        title: const Text("QuickTask "),
       ),
       body: SingleChildScrollView(
         child: Container(
