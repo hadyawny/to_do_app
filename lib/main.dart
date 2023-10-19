@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:to_do_app/layout/home_layout.dart';
+import 'package:to_do_app/prefs/prefs_helper.dart';
 import 'package:to_do_app/providers/my_provider.dart';
 import 'package:to_do_app/screens/edit/edit_screen.dart';
 import 'package:to_do_app/screens/login/login_screen.dart';
@@ -13,6 +15,7 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  PrefsHelper.prefs = await SharedPreferences.getInstance();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
