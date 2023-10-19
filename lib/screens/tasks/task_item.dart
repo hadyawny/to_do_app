@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:to_do_app/models/task_model.dart';
+import 'package:to_do_app/screens/edit/edit_screen.dart';
 import 'package:to_do_app/shared/network/firebase/firebase_manager.dart';
 import 'package:to_do_app/shared/styles/colors.dart';
 
@@ -30,7 +31,9 @@ class TaskItem extends StatelessWidget {
             borderRadius: const BorderRadius.only(topLeft: Radius.circular(12),bottomLeft: Radius.circular(12)),
           ),
           SlidableAction(
-            onPressed: (context) {},
+            onPressed: (context) {
+              Navigator.pushNamed(context, EditScreen.routeName);
+            },
             backgroundColor: Colors.blue,
             label: "Edit",
             icon: Icons.edit,

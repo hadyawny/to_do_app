@@ -11,6 +11,11 @@ class MyThemeData {
       unselectedItemColor: Colors.grey,
       backgroundColor: Colors.transparent,
     ),
+
+    appBarTheme: AppBarTheme(
+      backgroundColor: primary
+    ),
+
     textTheme: TextTheme(bodyLarge: GoogleFonts.poppins(
       fontSize: 24,
       fontWeight: FontWeight.bold,

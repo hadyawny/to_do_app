@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/layout/home_layout.dart';
 import 'package:to_do_app/providers/my_provider.dart';
+import 'package:to_do_app/screens/edit/edit_screen.dart';
 import 'package:to_do_app/screens/login/login_screen.dart';
 import 'package:to_do_app/screens/login/sign_up_screen.dart';
 import 'package:to_do_app/shared/styles/theming.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         HomeLayout.routeName: (context) => HomeLayout(),
         LoginScreen.routeName: (context) => LoginScreen(),
         SignUpScreen.routeName: (context) => SignUpScreen(),
+        EditScreen.routeName:(context) => EditScreen(),
       },
       themeMode: ThemeMode.light,
       theme: MyThemeData.lightTheme,

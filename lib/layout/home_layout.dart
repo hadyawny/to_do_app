@@ -30,7 +30,6 @@ class _HomeLayoutState extends State<HomeLayout> {
             Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName, (route) => false);
           }, icon: const Icon(Icons.logout))
         ],
-        backgroundColor: primary,
         title: const Text("To Do "),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

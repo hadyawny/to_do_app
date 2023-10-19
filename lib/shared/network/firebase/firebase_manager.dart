@@ -44,6 +44,8 @@ class FirebaseManager {
     return userDoc.data();
   }
 
+
+
   static Future<void> addTask(TaskModel task) {
     var collection = getTasksCollection();
     var docRef = collection.doc();
