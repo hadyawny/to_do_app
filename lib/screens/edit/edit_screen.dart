@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:to_do_app/layout/home_layout.dart';
 
 import '../../models/task_model.dart';
 import '../../shared/network/firebase/firebase_manager.dart';
@@ -19,10 +20,15 @@ class EditScreen extends StatefulWidget {
 class _EditScreenState extends State<EditScreen> {
   var titleController = TextEditingController();
   var descriptionController = TextEditingController();
-  var selectedDate = DateTime.now();
+  var selectedDate;
 
   @override
   Widget build(BuildContext context) {
+    var args = ModalRoute.of(context)?.settings.arguments as TaskModel;
+
+    selectedDate ??= DateTime.fromMillisecondsSinceEpoch(args.date);
+    titleController.text = args.title;
+    descriptionController.text = args.description;
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -41,7 +47,7 @@ class _EditScreenState extends State<EditScreen> {
           margin: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20), color: Colors.white),
+              borderRadius: BorderRadius.circular(20), color: Theme.of(context).colorScheme.onBackground),
           child: Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -52,7 +58,7 @@ class _EditScreenState extends State<EditScreen> {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
                       fontSize: 18,
-                      color: Colors.black,
+                      color: Theme.of(context).colorScheme.secondary,
                       fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
@@ -60,10 +66,11 @@ class _EditScreenState extends State<EditScreen> {
                 ),
                 TextFormField(
                   controller: titleController,
+                  style: TextStyle(color: Theme.of(context).colorScheme.secondary),
                   decoration: InputDecoration(
-                    label: const Text(
+                    label:  Text(
                       "Task Title",
-                      style: TextStyle(color: Colors.black45),
+                      style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -84,11 +91,13 @@ class _EditScreenState extends State<EditScreen> {
                 ),
                 TextFormField(
                   controller: descriptionController,
+                  style: TextStyle(color: Theme.of(context).colorScheme.secondary),
                   decoration: InputDecoration(
-                    label: const Text(
+                    label:  Text(
                       "Task Description",
-                      style: TextStyle(color: Colors.black45),
+                      style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
                     ),
+
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
@@ -111,7 +120,7 @@ class _EditScreenState extends State<EditScreen> {
                   style: GoogleFonts.poppins(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                      color: Theme.of(context).colorScheme.secondary),
                 ),
                 const SizedBox(
                   height: 9,
@@ -136,9 +145,18 @@ class _EditScreenState extends State<EditScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: primary,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    args.title = titleController.text;
+                    args.description = descriptionController.text;
+                    args.date =
+                        DateUtils.dateOnly(selectedDate).millisecondsSinceEpoch;
+
+                    FirebaseManager.updateTask(args);
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, HomeLayout.routeName, (route) => false);
+                  },
                   child: const Text(
-                    "Edit Task",
+                    "Save",
                   ),
                 ),
                 const SizedBox(

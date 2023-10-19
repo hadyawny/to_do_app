@@ -30,7 +30,8 @@ class LoginScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 73,),
             Text("Hi, Welcome Back! ",style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-              fontSize: 24
+              fontSize: 24,
+              color: Theme.of(context).colorScheme.secondary
             )),
             const SizedBox(height: 20,),
             Form(
@@ -42,7 +43,8 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     TextFormField(
                       controller: emailController,
-                      decoration:  InputDecoration(labelText: 'Email',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primary),),labelStyle: const TextStyle(color: Colors.grey) ),
+                      style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+                      decoration:  InputDecoration(labelText: 'Email',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primary),),labelStyle:  TextStyle(color: Theme.of(context).colorScheme.onSecondary) ),
 
 
                       validator: (value) {
@@ -63,8 +65,9 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(height: 20,),
                     TextFormField(
                       controller: passwordController,
+                      style: TextStyle(color: Theme.of(context).colorScheme.secondary),
                       obscureText: true,
-                      decoration:  InputDecoration(labelText: 'Password',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primary),),labelStyle: const TextStyle(color: Colors.grey) ),
+                      decoration:  InputDecoration(labelText: 'Password',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primary),),labelStyle:  TextStyle(color: Theme.of(context).colorScheme.onSecondary) ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please Enter Your Password';
@@ -128,7 +131,7 @@ class LoginScreen extends StatelessWidget {
               children: [
               Text("Don’t have an account ? ",style: GoogleFonts.poppins(
                   fontSize: 15,
-                  color: Colors.black,
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.w400
               ),),
               const SizedBox(width: 10,),

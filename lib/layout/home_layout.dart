@@ -35,6 +35,7 @@ class _HomeLayoutState extends State<HomeLayout> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: primary,
+        foregroundColor: Colors.white,
         onPressed: () {
           showAddTaskBottomSheet();
         },
@@ -42,7 +43,7 @@ class _HomeLayoutState extends State<HomeLayout> {
       ),
       bottomNavigationBar: BottomAppBar(
         notchMargin: 7,
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.onBackground,
         shape: const CircularNotchedRectangle(),
         child: BottomNavigationBar(
             elevation: 0,

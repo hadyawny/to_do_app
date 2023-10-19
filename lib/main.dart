@@ -17,8 +17,10 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   // FirebaseFirestore.instance.disableNetwork();
-  runApp(ChangeNotifierProvider(
-      create: (context) => MyProvider(), child: MyApp()));
+  runApp(
+      ChangeNotifierProvider(
+      create: (context) => MyProvider(),
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -37,10 +39,11 @@ class MyApp extends StatelessWidget {
         HomeLayout.routeName: (context) => HomeLayout(),
         LoginScreen.routeName: (context) => LoginScreen(),
         SignUpScreen.routeName: (context) => SignUpScreen(),
-        EditScreen.routeName:(context) => EditScreen(),
+        EditScreen.routeName: (context) => EditScreen(),
       },
-      themeMode: ThemeMode.light,
+      themeMode: provider.theme,
       theme: MyThemeData.lightTheme,
+      darkTheme: MyThemeData.darkTheme,
     );
   }
 }

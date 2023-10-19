@@ -31,7 +31,7 @@ class _TasksTabState extends State<TasksTab> {
           },
           leftMargin: 9,
           monthColor: primary,
-          dayColor: Colors.grey,
+          dayColor: Theme.of(context).colorScheme.onSecondary,
           activeDayColor: Colors.white,
           activeBackgroundDayColor: primary,
           dotsColor: Colors.white,

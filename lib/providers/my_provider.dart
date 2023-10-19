@@ -6,6 +6,7 @@ import 'package:to_do_app/shared/network/firebase/firebase_manager.dart';
 class MyProvider extends ChangeNotifier {
   UserModel? userModel;
   User? firebaseUser;
+  ThemeMode theme = ThemeMode.light ;
 
   MyProvider() {
     firebaseUser = FirebaseAuth.instance.currentUser;
@@ -20,4 +21,16 @@ class MyProvider extends ChangeNotifier {
     userModel = await FirebaseManager.readUser(firebaseUser!.uid);
     notifyListeners();
   }
+
+  changeTheme(){
+    if(theme==ThemeMode.light){
+      theme = ThemeMode.dark;
+    }
+    else{
+      theme = ThemeMode.light;
+    }
+    notifyListeners();
+
+  }
+
 }

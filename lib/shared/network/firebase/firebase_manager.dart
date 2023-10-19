@@ -44,6 +44,18 @@ class FirebaseManager {
     return userDoc.data();
   }
 
+  static Future<TaskModel?> getTask(String taskId)async{
+
+    DocumentSnapshot<TaskModel> taskDoc = await getTasksCollection().doc(taskId).get();
+
+      return taskDoc.data();
+
+
+  }
+
+
+
+
 
 
   static Future<void> addTask(TaskModel task) {

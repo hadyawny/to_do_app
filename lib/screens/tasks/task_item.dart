@@ -14,12 +14,13 @@ class TaskItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 12,
+      color: Theme.of(context).colorScheme.onBackground,
       shape: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Colors.transparent)),
+          borderSide:  BorderSide(color: Theme.of(context).colorScheme.onBackground,)),
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Slidable(
-
+      
         startActionPane: ActionPane(motion: const BehindMotion(), children: [
           SlidableAction(
             onPressed: (context) {
@@ -32,7 +33,8 @@ class TaskItem extends StatelessWidget {
           ),
           SlidableAction(
             onPressed: (context) {
-              Navigator.pushNamed(context, EditScreen.routeName);
+
+              Navigator.pushNamed(context, EditScreen.routeName,arguments: task);
             },
             backgroundColor: Colors.blue,
             label: "Edit",
@@ -40,7 +42,11 @@ class TaskItem extends StatelessWidget {
           ),
         ],
         ),
-        child: Padding(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: Theme.of(context).colorScheme.onBackground,
+          ),
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
@@ -68,10 +74,10 @@ class TaskItem extends StatelessWidget {
                   ),
                   Text(
                     task.description,
-                    style: const TextStyle(
+                    style:  TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
-                      color: Colors.black54,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                 ],
@@ -86,7 +92,7 @@ class TaskItem extends StatelessWidget {
                     task.isDone=true;
                   }
                   FirebaseManager.updateTask(task);
-                  
+
                 },
                 child: Container(
                   margin: const EdgeInsets.only(right: 12),

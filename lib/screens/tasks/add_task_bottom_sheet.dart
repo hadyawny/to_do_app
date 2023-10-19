@@ -19,8 +19,9 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.all(8.0),
+      color: Theme.of(context).colorScheme.onBackground,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -29,15 +30,16 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
             "Add New Task",
             textAlign: TextAlign.center,
             style: GoogleFonts.poppins(
-                fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
+                fontSize: 18, color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 24,
           ),
           TextFormField(
             controller: titleController,
+            style: TextStyle(color: Theme.of(context).colorScheme.secondary),
             decoration: InputDecoration(
-              label: const Text("Task Title",style: TextStyle(color: Colors.black45),),
+              label:  Text("Task Title",style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
@@ -57,8 +59,9 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
           ),
           TextFormField(
             controller: descriptionController,
+            style: TextStyle(color: Theme.of(context).colorScheme.secondary),
             decoration: InputDecoration(
-              label: const Text("Task Description",style: TextStyle(color: Colors.black45),),
+              label:  Text("Task Description",style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
@@ -79,7 +82,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
           Text(
             "Select Date",
             style: GoogleFonts.poppins(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+                fontSize: 20, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.secondary),
           ),
           const SizedBox(
             height: 9,
